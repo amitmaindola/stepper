@@ -6,26 +6,14 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { TextField } from '@mui/material';
+import { initialState } from '../config/config';
 
 const steps = ['Select campaign settings', 'Create an ad group', 'Create an ad'];
 
 export default function HorizontalLinearStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
 
-  const [data, setData] = React.useState({
-    firstName: '',
-    lastName: '',
-    userName: '',
-    password: '',
-    email: '',
-    phone: '',
-    addressLine1: '',
-    addressLine2: '',
-    employerName: '',
-    designation: '',
-    totalExperience: '',
-    city: ''
-  })
+  const [data, setData] = React.useState(initialState)
 
   const updateData = (value, key) => {
     let temp = data;
@@ -73,13 +61,13 @@ export default function HorizontalLinearStepper() {
 
   return (
     <Box sx={{ width: '80%', margin: '80px auto 40px'}}>
-      <Stepper activeStep={activeStep}>
+      <Stepper activeStep={activeStep} style={{display: 'flex', flexWrap: 'wrap'}}>
         {steps.map((label, index) => {
           const stepProps = {};
           const labelProps = {};
           
           return (
-            <Step key={label} {...stepProps}>
+            <Step style={{margin: 10}} key={label} {...stepProps}>
               <StepLabel {...labelProps}>{label}</StepLabel>
             </Step>
           );
@@ -99,11 +87,11 @@ export default function HorizontalLinearStepper() {
         <React.Fragment>
           
               <div style={{display: findDisplay(0)}}>
-                <div  style={{display: 'flex', widows: '100%', justifyContent: 'space-between', marginTop: 20}}>
+                <div  className='wrapper'>
                   <TextField required onChange={(e)=>{updateData(e.target.value, 'firstName')}} style={{width: '50%', margin: 10}}  label="First Name" variant="outlined" name='firstName'/>
                   <TextField required onChange={(e)=>{updateData(e.target.value, 'lastName')}} style={{width: '50%', margin: 10}}  label="Last Name" variant="outlined" />
                 </div>
-                <div style={{display: 'flex', widows: '100%', justifyContent: 'space-between', marginTop: 10}}>
+                <div className='wrapper'>
                   <TextField required onChange={(e)=>{updateData(e.target.value, 'userName')}} style={{width: '50%', margin: 10}}  label="User Name" variant="outlined" />
                   <TextField required onChange={(e)=>{updateData(e.target.value, 'password')}} style={{width: '50%', margin: 10}}  type='password' label="Password" variant="outlined" />
                 </div>
@@ -113,7 +101,7 @@ export default function HorizontalLinearStepper() {
                   <TextField required onChange={(e)=>{updateData(e.target.value, 'email')}} style={{width: '50%', margin: 10}}  label="Email" variant="outlined" name='email' />
                   <TextField required onChange={(e)=>{updateData(e.target.value, 'phone')}} style={{width: '50%', margin: 10}}  label="Phone" variant="outlined" />
                 </div>
-                <div style={{display: 'flex', widows: '100%', justifyContent: 'space-between', marginTop: 10}}>
+                <div className='wrapper'>
                   <TextField required onChange={(e)=>{updateData(e.target.value, 'addressLine1')}} style={{width: '50%', margin: 10}}  label="Address Line1" variant="outlined" />
                   <TextField required onChange={(e)=>{updateData(e.target.value, 'addressLine2')}} style={{width: '50%', margin: 10}}  label="Address Line2" variant="outlined" />
                 </div>
@@ -123,7 +111,7 @@ export default function HorizontalLinearStepper() {
                   <TextField required onChange={(e)=>{updateData(e.target.value, 'employerName')}} style={{width: '50%', margin: 10}}  label="Employer Name" variant="outlined" />
                   <TextField required onChange={(e)=>{updateData(e.target.value, 'designation')}} style={{width: '50%', margin: 10}}  label="Designation" variant="outlined" />
                 </div>
-                <div style={{display: 'flex', widows: '100%', justifyContent: 'space-between', marginTop: 10}}>
+                <div className='wrapper'>
                   <TextField required onChange={(e)=>{updateData(e.target.value, 'totalExperience')}} style={{width: '50%', margin: 10}}  label="Total Experience" variant="outlined" />
                   <TextField required onChange={(e)=>{updateData(e.target.value, 'city')}} style={{width: '50%', margin: 10}}  label="City" variant="outlined" />
                 </div>
